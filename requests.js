@@ -22,12 +22,22 @@ function send(config, options, callback) {
 
   var url = config.getBaseURL() + path + "?" + queryString;
 
+  var params = {
+  	proxy: config.proxy,
+  	timeout: config.timeout
+  };
+
+  var headers = {};
+
+  if(body) {
+    headers = {'content-type': 'application/json'};
+  }
+
   Parse.Cloud.httpRequest({
     method: options.method.toUpperCase(),
     url: url,
-    headers: {
-      'content-type': (body ? 'application/json;charset=utf-8' : undefined)
-    },
+    params: params,
+    headers: headers,
     body: body,
     success: function(res) {
       if (typeof callback !== "function") {
