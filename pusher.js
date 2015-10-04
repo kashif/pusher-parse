@@ -14,13 +14,13 @@ var validateChannel = function(channel) {
   if (channel.length > 200) {
     throw new Error("Channel name too long: '" + channel + "'");
   }
-}
+};
 
 var validateSocketId = function(socketId) {
   if (typeof socketId !== "string" || socketId === "" || !socketId.match(/^\d+\.\d+$/)) {
     throw new Error("Invalid socket id: '" + socketId + "'");
   }
-}
+};
 
 /** Provides access to Pusher's authentication.
  *

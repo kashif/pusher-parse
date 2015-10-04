@@ -22,13 +22,7 @@ function send(config, options, callback) {
 
   var url = config.getBaseURL() + path + "?" + queryString;
 
-  var params = {
-  	proxy: config.proxy,
-  	timeout: config.timeout
-  };
-
   var headers = {};
-
   if(body) {
     headers = {'content-type': 'application/json'};
   }
@@ -36,7 +30,6 @@ function send(config, options, callback) {
   Parse.Cloud.httpRequest({
     method: options.method.toUpperCase(),
     url: url,
-    params: params,
     headers: headers,
     body: body,
     success: function(res) {
@@ -84,7 +77,7 @@ function createSignedQueryString(token, request) {
   if (request.params) {
     for (var key in request.params) {
       if (RESERVED_QUERY_KEYS[key] !== undefined) {
-        throw Error(key + ' is a required parameter and cannot be overidden');
+        throw Error(key + ' is a required parameter and cannot be overridden');
       }
       params[key] = request.params[key];
     }
